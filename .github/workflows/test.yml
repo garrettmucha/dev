@@ -1,0 +1,48 @@
+name: Lightning Runner Test
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  test-lightning-runner:
+    runs-on: [self-hosted, lightning-fast]
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Display Lightning Runner info
+        run: |
+          echo "⚡ Running on Lightning Runner!"
+          echo "================================"
+          echo "Runner: $(hostname)"
+          echo "OS: $(uname -a)"
+          echo "CPU cores: $(nproc)"
+          echo "Memory: $(free -h | grep Mem | awk '{print $2}')"
+          echo "================================"
+      
+      - name: Run simple test
+        run: |
+          echo "Testing Lightning Runner performance..."
+          time echo "Lightning fast execution! ⚡"
+          
+      - name: Install dependencies (example)
+        run: |
+          echo "Installing example packages..."
+          # Uncomment if you want to test package installation
+          # npm install
+          # pip install --break-system-packages requests
+          
+      - name: Run tests (example)
+        run: |
+          echo "Running tests..."
+          echo "✅ All tests passed on Lightning Runner!"
+          
+      - name: Success message
+        run: |
+          echo "🎉 Workflow completed successfully on Lightning Runner!"
+          echo "⚡ Fast, efficient, and ready for production!"
